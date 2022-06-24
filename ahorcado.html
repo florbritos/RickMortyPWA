@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Florencia Britos, Cátedra PWA</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="css/estilos.css" rel="stylesheet"/>
+  <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/> -->
+</head>
+<body>
+  <header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light container">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Rick&Morty</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id ="favoritospage" class="nav-link" href="favoritos.html">Favoritos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trailers.html">Trailers</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">Ahorcado</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="liveAlertPlaceholder" class="container"></div>
+  </header>
+
+  <section class="section1 container ">
+    <div class="d-flex flex-column flex-md-row justify-content-around align-items-center mt-5">
+        <div class="intro order-1 order-md-1">
+            <h1>Rick and Morty Break</h1>
+            <p>Rick y Morty es una serie de televisión animada para adultos creada por Justin Roiland y Dan Harmon, que se estrenó en 2013. Se trata de Rick Sánchez, un científico excéntrico, loco, caliente, anciano y alcohólico que toma a su joven nieto Morty Smith en aventuras peligrosas y extravagantes en todo el Cosmos y universos alternativos. La siguiente es una lista de personajes de la serie de televisión Rick y Morty.</p>
+        </div>
+        <div class="portada order-0 order-md-0"></div>
+    </div>
+</section>
+
+  <section class="container section2 text-center">
+    <h2 class="mb-5">Rick&Morty Ahorcado</h2>
+    <p>Adiviná el nombre de uno de los personajes principales.</p>
+    <p>Te vamos a dar algunas pistas para que te sea más fácil. Tenés nada más 8 oportunidades para equivocarte.</p>
+    <p class="fw-bold h4 mb-5">Empecemos!</p>
+
+    <div class="d-flex flex-column justify-content-around align-items-center mt-5">
+      <div id="pistas" class=""></div>
+      <div class="">
+        <p class="fw-bold">Oportunidades restantes: <span id="chances"></span></p>
+        <div id="juegoadivinar" class="text-center"></div>
+      </div>
+      <p id="resultadoAdivinador" class=""></p>
+    </div>
+
+    <div class="text-center mt-5">
+      <input id="letra" type="text" placeholder="Dame una letra" maxlength="1"/> 
+      <button id="comprobarLetra" type="button" class="buttonAction">Comprobar</button>
+      <p class="">Letras usadas : <span id="letrasUsadas"></span></p>
+    </div>
+ 
+    <div id="juegoNuevo" style="display:none;" class="mt-5">
+      <p class="text-center">Desea volver a jugar?</p>
+      <button onclick="nuevoJuego()" type="button" class="d-block mx-auto">SI</button>
+    </div>
+    
+  </section>
+    <script src="./js/register-sw.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/ahorcado.js"></script>
+</body>
+</html>

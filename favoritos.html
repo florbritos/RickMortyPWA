@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Florencia Britos, Cátedra PWA</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link href="css/estilos.css" rel="stylesheet"/>
+    <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/> -->
+</head>
+<body>
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-light container">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Rick&Morty</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active"  href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id ="favoritospage" aria-current="page" class="nav-link" href="#">Favoritos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="trailers.html">Trailers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ahorcado.html">Ahorcado</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="liveAlertPlaceholder" class="container"></div>
+    </header>
+    
+    <section class="section1 container ">
+        <div class="d-flex flex-column flex-md-row justify-content-around align-items-center mt-5">
+            <div class="intro order-1 order-md-1">
+                <h1>Rick and Morty Break</h1>
+                <p>Rick y Morty es una serie de televisión animada para adultos creada por Justin Roiland y Dan Harmon, que se estrenó en 2013. Se trata de Rick Sánchez, un científico excéntrico, loco, caliente, anciano y alcohólico que toma a su joven nieto Morty Smith en aventuras peligrosas y extravagantes en todo el Cosmos y universos alternativos. La siguiente es una lista de personajes de la serie de televisión Rick y Morty.</p>
+            </div>
+            <div class="portada order-0 order-md-0"></div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h2 class="text-center mb-5">Tus favoritos</h2>
+
+            <div id="spinner">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+            <div id="sectionfavoritos" class="d-flex flex-column flex-md-row flex-wrap justify-content-center align-items-start"></div>
+        </div>
+    </section>
+
+    <script src="./js/register-sw.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="./js/favorites.js"></script>
+</body>
+</html>

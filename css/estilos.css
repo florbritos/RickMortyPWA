@@ -1,0 +1,94 @@
+body{
+    background-color:#090B1A;
+    color:white;
+}
+#spinner{
+    -display:block;
+    margin:auto;
+    text-align: center;
+}
+nav{
+    background-color:#090B1A;
+    border-bottom:solid white;
+    border-width:1px;
+}
+.navbar-brand{
+    color:#62FF2E !important;
+    font-weight: 900;
+}
+.navbar-nav li a{
+    color:white !important;
+}
+.navbar-nav li a:hover{
+    color:#76FF5A !important;
+}
+.portada{
+    background:url(../imagenes/rickandmorty.png) center center no-repeat;
+    background-size: cover;
+    max-width:420px;
+    max-height:528px;
+    width:100vw;
+    height:calc(100vw * 0.894);
+}
+.intro{
+    width:100%;
+    margin-top:2em;
+}
+.section1{
+    margin-top:3em;
+    text-align: center;
+}
+#principales .card-body, #main .card-body, #sectionfavoritos .card-body, #pistas .card-body{
+    background-color:#090B1A !important;
+}
+#principales .card, #sectionfavoritos .card{
+    margin:1em 1em;
+}
+#pistas .card{
+    background-color:#090B1A !important;
+}
+.foto{
+    background-color:#090B1A !important;
+}
+.btn{
+    background-color:#236128;
+    border-radius: 5px;
+    border-width: 1px;
+    color:white;
+    font-weight: bold;
+    display: block;
+    width:100%;
+}
+.btn:hover{
+    background-color:#113014;
+    color:white;
+}
+.buttonAction{
+    color:white;
+    font-weight: bold;
+    display: block;
+    width:100%;
+    background-color: #4C5175;
+    margin: 0.5em auto;
+    border:none;
+    border-radius: 5px;
+}
+.buttonAction:hover{
+    background-color:#212333;
+    color:white;
+
+}
+form label{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+
+@media screen and (min-width:769px){
+    .intro{
+        width:40%;
+    }
+    .section2 button{
+        width:fit-content;
+    }
+}
