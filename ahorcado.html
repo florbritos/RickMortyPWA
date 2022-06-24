@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="stylesheet" href="css/bootstrap.css">
   <link href="css/estilos.css" rel="stylesheet"/>
-  <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/> -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 </head>
 <body>
   <header class="fixed-top">
@@ -57,24 +57,30 @@
     <div class="d-flex flex-column justify-content-around align-items-center mt-5">
       <div id="pistas" class=""></div>
       <div class="">
-        <p class="fw-bold">Oportunidades restantes: <span id="chances"></span></p>
-        <div id="juegoadivinar" class="text-center"></div>
+        <p class="fw-bold">Oportunidades restantes: <span id="chances" class="rojo"></span></p>
+        <div><p id="juegoadivinar" class="text-center fw-bold text-uppercase h3"></p></div>
       </div>
       <p id="resultadoAdivinador" class=""></p>
     </div>
 
-    <div class="text-center mt-5">
+    <div id="formAdivinar" class="text-center mt-5">
       <input id="letra" type="text" placeholder="Dame una letra" maxlength="1"/> 
       <button id="comprobarLetra" type="button" class="buttonAction">Comprobar</button>
       <p class="">Letras usadas : <span id="letrasUsadas"></span></p>
     </div>
  
-    <div id="juegoNuevo" style="display:none;" class="mt-5">
+    <div id="juegoNuevo" style="display:none;" class="my-5">
       <p class="text-center">Desea volver a jugar?</p>
-      <button onclick="nuevoJuego()" type="button" class="d-block mx-auto">SI</button>
+      <button onclick="nuevoJuego()" type="button" class="btn d-block mx-auto">SI</button>
     </div>
     
   </section>
+  <footer class="bg-dark text-center text-white">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <p class="text-white">Florencia Britos PWA</a>
+    </div>
+  </footer> 
     <script src="./js/register-sw.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/ahorcado.js"></script>

@@ -6,8 +6,6 @@ const divFavs= document.getElementById('sectionfavoritos');
 
 API_MORTY= "https://rickandmortyapi.com/graphql";
 
-//debugger;
-
 const queryBusquedaPorIds = (listaAbuscar) => `query {
     charactersByIds(ids:"${listaAbuscar}"){
     id
@@ -80,7 +78,9 @@ const queryPersonaje = (personaje) => `query {
          console.log('response cruda', response);
          return response.json();
      }).then(function(json){
-         mostrarPersPrincipales(json);
+        let data =json.data.charactersByIds;
+        localStorage.principales = JSON.stringify(data);
+         mostrarPersPrincipales();
          console.log(json);
      }).finally(function(){
         pararSpinner();
@@ -116,19 +116,15 @@ const queryPersonaje = (personaje) => `query {
 });
 
 function mostrarResultadoPers(dataPersonajes){
-//debugger;
-    //console.log('a ver', dataPersonajes.data.characters.results);
+
     if(dataPersonajes.data.characters.results.length==0){
         resultadoContenedor.innerHTML='<p>No encontramos a tu personaje, vuelve a intentar con otro nombre.</p>';
         return;
     }
 
-    //console.log(dataPersonajes);
     resultado=dataPersonajes.data.characters.results[0];
     let temporadas= organizarEpisodios(resultado);
-    console.log('esto es lo recibido de la funcion temporadas', temporadas)
       
-    
         resultadoContenedor.innerHTML =`
         <div class="card my-5" style="max-width: 450px; margin: auto;">
                 <div class="row g-0">
@@ -151,12 +147,8 @@ function mostrarResultadoPers(dataPersonajes){
                 </div>
             </div>
 
-        `
+        `;
         
-
-
-
-
     const divBusquedaTemporadas = document.getElementById(`BusquedaTemporadasId${resultado.id}`);
     const divBusquedaCapitulos = document.getElementById(`BusquedaCapitulosId${resultado.id}`);
 
@@ -180,15 +172,12 @@ function mostrarResultadoPers(dataPersonajes){
         const ulBusquedaEpisodios = document.getElementById(`episodiosbusqId${resultado.id}${temporadas[i].nombre}`);
 
         for(let y=0; y<temporadas[i].episodios.length; y++){
-            //debugger;
             ulBusquedaEpisodios.innerHTML+=`
             <li>${temporadas[i].episodios[y].codEpisodio}: ${temporadas[i].episodios[y].nombre}</li>
-            `
+            `;
         }
     }  
     
-
-    //episodiosId${arrayPersPrincipales[i].id}${temporadas[a].nombre}
 }
 
 function organizarEpisodios(arrayEpisodio){
@@ -229,17 +218,15 @@ function organizarEpisodios(arrayEpisodio){
 }
 
 
-function mostrarPersPrincipales(dataPersPrincipales){
+function mostrarPersPrincipales(){
 
-     let arrayPersPrincipales = dataPersPrincipales.data.charactersByIds;
+    let arrayPersPrincipales = JSON.parse(localStorage.principales);
      let temporadas;
-
-     localStorage.principales = JSON.stringify(arrayPersPrincipales);
      
      for(let i=0; i<arrayPersPrincipales.length; i++){
-        //debugger;
+        
         temporadas= organizarEpisodios(arrayPersPrincipales[i]);
-        console.log(arrayPersPrincipales[i]);
+        
 
           divPersPrincipales.innerHTML+=`
             <div class="card mb-3" style="max-width: 450px;">
@@ -286,7 +273,7 @@ function mostrarPersPrincipales(dataPersPrincipales){
                 for (let b=0; b<temporadas[a].episodios.length; b++){
                     ulEpisodios.innerHTML+=`
                         <li>${temporadas[a].episodios[b].codEpisodio}: ${temporadas[a].episodios[b].nombre}</li>
-                    `
+                    `;
                 }
 
           }
@@ -294,7 +281,6 @@ function mostrarPersPrincipales(dataPersPrincipales){
           
      }
 }
-
 
 searchPersPrincipales();
 
@@ -314,18 +300,15 @@ function agregarFav(personajeid){
         alert('Este personaje ya se encuentra en tu lista de favoritos.', 'warning');
         return;
     }
-
     
     favs.push(personajeid);
     alert('Se ha agregado a tu lista de favoritos con éxito.', 'success');
 
-    
     localStorage.favoritos = JSON.stringify(favs);
     console.log(favs);
 }
 
 function eliminarFav(elemento){
-//debugger;
     let indexPersonaje = favs.indexOf(elemento);
 
     if(indexPersonaje==-1){
@@ -334,7 +317,6 @@ function eliminarFav(elemento){
     }
 
     let removidos = favs.filter(valor => valor !== elemento ? true : false);
-    console.log('despues de eliminarse', removidos);
     favs=removidos;
     localStorage.favoritos = JSON.stringify(favs);
     alert('Se ha eliminado de tus favoritos con éxito.', 'danger')
@@ -344,7 +326,7 @@ var alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 function alert(message, type) {
     var wrapper = document.createElement('div')
     wrapper.innerHTML = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' + message + '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>'
-  
+
     alertPlaceholder.append(wrapper)
 }
 

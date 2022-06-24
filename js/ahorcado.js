@@ -6,11 +6,7 @@ const divResultado = document.getElementById('resultadoAdivinador');
 const divJuegoNuevo = document.getElementById('juegoNuevo');
 const divPistas = document.getElementById('pistas');
 const spanLetrasUsadas = document.getElementById('letrasUsadas');
-//let imgAdivinar = document.getElementById('fotoAdivinar');
-
-
-
-
+const divFormAdivinar = document.getElementById('formAdivinar');
 
 let listaPalabras;
 let arrayPalabra;
@@ -21,24 +17,20 @@ let idAlAzar;
 function inicializarJuego(){
 
     if(localStorage.principales){
-        //debugger;
         arrayprincipales = JSON.parse(localStorage.principales);
-        idAlAzar = Math.floor(Math.random()* 6);
-        console.log('este es el id al azar', idAlAzar);
+        idAlAzar = Math.floor(Math.random()* 5);
         listaPalabras= arrayprincipales[idAlAzar].name;
         arrayPalabra = listaPalabras.toLocaleLowerCase().split('');
-        console.log('este es el arrayPalabra', arrayPalabra);
-     
-     //debugger;
+       
      divPistas.innerHTML=`
         <div class="card mb-3" style="max-width: 500px;">
-            <div class="row g-0">
+            <div class="row g-0 align-items-center">
                 <div class="col-md-7">
                 <img src="imagenes/pregunta.png" class="img-fluid rounded-start" alt="imagen con signo de pregunta" id="fotoAdivinar">
                 </div>
                 <div class="col-md-5">
                 <div class="card-body">
-                    <h5 id="tituloAdivinar" class="card-title">????</h5>
+                    <h5 id="tituloAdivinar" class="card-title">Nombre: ????</h5>
                     <p class="card-text">Especie: ${arrayprincipales[idAlAzar].species}</p>
                     <p class="card-text">Sexo: ${arrayprincipales[idAlAzar].gender}</p>
                 </div>
@@ -53,9 +45,6 @@ function inicializarJuego(){
 
 
 function empezarJuego(){ 
-   //debugger;
-
-    
 
     for (let l=0; l<arrayPalabra.length; l++){
 
@@ -63,13 +52,10 @@ function empezarJuego(){
             arrayAdivinar.push('</br>');
             l++;
         } 
-
         arrayAdivinar.push('_');
-
     }
 
      for(let u=0; u<arrayAdivinar.length; u++){
-        //debugger;
          divAdivinar.innerHTML+=`${arrayAdivinar[u]} `;
     }
 
@@ -83,12 +69,9 @@ botonComprobar.addEventListener('click', (e)=>{
     if(chances>0 && letra !==''){
         
         inputLetra.value='';
-        //letrasUsadas.push(letra);
         spanLetrasUsadas.innerHTML+=`${letra} `;
         
-
         console.log('letra recibida', letra);
-        //let indexLetra = arrayPalabra.indexOf(letra);
         let indexLetra=[];
 
         arrayPalabra.forEach((l, index) => { l == letra ? indexLetra.push({ l, index }): ''});
@@ -100,9 +83,8 @@ botonComprobar.addEventListener('click', (e)=>{
             chances--;
             spanOportunidades.innerHTML=`${chances}`;
             if(chances==0){
-                //debugger;
-                console.log('perdiste');
-                divResultado.innerHTML=`<p class="fw-bold h3 p-3">Perdiste :( </p>`;
+
+                divResultado.innerHTML=`<p class="fw-bold p-3 text-uppercase rojo"> Perdiste :( </p>`;
                 botonComprobar.disabled =true;
                 divJuegoNuevo.setAttribute('style','display: block;' );
                 console.log(arrayprincipales[idAlAzar].image);
@@ -112,6 +94,7 @@ botonComprobar.addEventListener('click', (e)=>{
                 img.alt= `${arrayprincipales[idAlAzar].name}`;
                 let titulo = document.getElementById('tituloAdivinar');
                 titulo.innerHTML=`${arrayprincipales[idAlAzar].name}`;
+                divFormAdivinar.setAttribute('style','display:none;');
                 return;
             }
 
@@ -120,17 +103,9 @@ botonComprobar.addEventListener('click', (e)=>{
             for(let j=0; j<indexLetra.length; j++){
                 arrayAdivinar[indexLetra[j].index]=indexLetra[j].l;
             }
-            // arrayAdivinar[indexLetra]=letra;
-            console.log('asi va quedando', arrayAdivinar)
             mostrarLetras(arrayAdivinar);
         }
-        console.log('estas son las chances que tenes todavia', chances);
-    }else{
-        console.log('las chances se acabaron o hay espacios');
     }
-
-    
-
     
 });
 
@@ -143,8 +118,9 @@ function mostrarLetras(arrayAdivinar){
 
     let indexGuion = arrayAdivinar.indexOf('_');
     if(indexGuion==-1){
-        divResultado.innerHTML=`<p class="fw-bold h3 p-3">Ganaste!</p>`;
+        divResultado.innerHTML=`<p class="fw-bold p-3 text-uppercase verde">Ganaste!</p>`;
         botonComprobar.disabled =true;
+        divFormAdivinar.setAttribute('style','display:none;');
         divJuegoNuevo.setAttribute('style','display: block;' );
         let img = document.getElementById('fotoAdivinar');
         img.src=`${arrayprincipales[idAlAzar].image}`;
@@ -165,6 +141,7 @@ function nuevoJuego(){
     arrayAdivinar=[];
     chances=8;
     spanLetrasUsadas.innerHTML='';
+    divFormAdivinar.setAttribute('style','display:block;')
     inicializarJuego();
 }
 

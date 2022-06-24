@@ -43,7 +43,9 @@ if(localStorage.favoritos){
 function buscarFavs(){
 
     if(favs.length==0){
-        console.log('no hay favs');
+        
+        divFavs.innerHTML='<p class="text-center fw-bold my-3">No tienes ningún favorito.</p>';
+        pararSpinner();
         return;
     }
 
@@ -108,7 +110,7 @@ function mostrarfavs(jsonFavs){
     let temporadas;
     
     for(let i=0; i<arrayFavs.length; i++){
-       //debugger;
+       
        temporadas= organizarEpisodios(arrayFavs[i]);
        console.log(arrayFavs[i]);
 
@@ -160,20 +162,20 @@ function mostrarfavs(jsonFavs){
                }
 
          }
-
-         
+    
     }
 }
 
 function eliminarFav(elemento){
 
-    console.log('este es el que se quiere eliminar', elemento);
-
     let removidos = favs.filter(valor => valor !== elemento ? true : false);
-    console.log('despues de eliminarse', removidos);
     localStorage.favoritos = JSON.stringify(removidos);
     document.getElementById(`favorito${elemento}`).remove();
     alert('Se ha eliminado de tus favoritos con éxito', 'danger')
+
+    if(removidos.length==0){
+        divFavs.innerHTML='<p class="text-center fw-bold my-3">No tienes ningún favorito.</p>';
+    }
 
 }
 
